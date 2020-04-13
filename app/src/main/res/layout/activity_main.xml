@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.GameActivity">
+
+    <com.dgr.sumocku.ui.custom.SudokuBoardView
+        android:id="@+id/sbv_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_16"/>
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/spacing_16"
+        android:columnCount="3"
+        android:rowCount="3">
+
+        <Button
+            android:id="@+id/btn_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_one" />
+
+        <Button
+            android:id="@+id/btn_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_two" />
+
+        <Button
+            android:id="@+id/btn_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_three" />
+
+        <Button
+            android:id="@+id/btn_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_four" />
+
+        <Button
+            android:id="@+id/btn_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_5" />
+
+        <Button
+            android:id="@+id/btn_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_six" />
+
+        <Button
+            android:id="@+id/btn_seven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_seven" />
+
+        <Button
+            android:id="@+id/btn_eight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_eight" />
+
+        <Button
+            android:id="@+id/btn_nine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_nine" />
+
+    </GridLayout>
+
+</LinearLayout>
