@@ -1,9 +1,9 @@
 package com.dgr.sumocku.ui
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.dgr.sumocku.R
 import com.dgr.sumocku.extensions.BaseActivity
+import com.dgr.sumocku.extensions.observe
 import com.dgr.sumocku.ui.custom.SudokuBoardView
 import com.dgr.sumocku.viewmodel.PlayViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,13 +19,9 @@ class GameActivity : BaseActivity(), SudokuBoardView.OnTouchListener {
 
         sbv_game.setTouchListener(this)
 
-        viewModel.sudokuGame.selectedCell.observe(this, Observer {
-            updateSelectedCellUI(it.first, it.second)
-        })
-    }
-
-    private fun updateSelectedCellUI(row: Int, col: Int) {
-        sbv_game.updateSelectedCellUI(row, col)
+        observe(viewModel.sudokuGame.selectedCell) {
+            sbv_game.updateSelectedCellUI(it.first, it.second)
+        }
     }
 
     override fun onCellSelected(row: Int, col: Int) {
