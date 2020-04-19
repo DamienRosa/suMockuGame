@@ -4,5 +4,6 @@ data class Cell(
     var row: Int,
     var col: Int,
     var value: Int,
-    var isStartingCell: Boolean = false
+    var isStartingCell: Boolean = false,
+    var notes: MutableSet<Int> = mutableSetOf()
 )

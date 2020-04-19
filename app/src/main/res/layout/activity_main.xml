@@ -75,6 +75,11 @@
             android:layout_height="wrap_content"
             android:text="@string/button_nine" />
 
+        <ImageButton
+            android:id="@+id/btn_notes"
+            android:layout_width="87dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit" />
     </GridLayout>
 
 </LinearLayout>

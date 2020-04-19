@@ -1,6 +1,9 @@
 package com.dgr.sumocku.ui
 
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import com.dgr.sumocku.R
 import com.dgr.sumocku.extensions.BaseActivity
 import com.dgr.sumocku.extensions.observe
@@ -11,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.generic.instance
 
 class GameActivity : BaseActivity(), SudokuBoardView.OnTouchListener {
+
+    private var buttonsList: List<Button>? = null
 
     private val viewModel: PlayViewModel by instance()
 
@@ -24,13 +29,17 @@ class GameActivity : BaseActivity(), SudokuBoardView.OnTouchListener {
     private fun initView() {
         sbv_game.setTouchListener(this)
 
-        val buttonsList = listOf(
+        buttonsList = listOf(
             btn_one, btn_two, btn_three,
             btn_four, btn_five, btn_six,
             btn_seven, btn_eight, btn_nine
         )
-        buttonsList.forEachIndexed { index, button ->
+        (buttonsList as List<Button>).forEachIndexed { index, button ->
             button.setOnClickListener { viewModel.sudokuGame.handleInput(index + 1) }
+        }
+
+        btn_notes.setOnClickListener {
+            viewModel.sudokuGame.changeNoteTakingState()
         }
     }
 
@@ -40,6 +49,27 @@ class GameActivity : BaseActivity(), SudokuBoardView.OnTouchListener {
         }
 
         observe(viewModel.sudokuGame.cellsList) { updateCells(it) }
+
+        observe(viewModel.sudokuGame.isTakingNotes) { updateNoteTakingUI(it) }
+
+        observe(viewModel.sudokuGame.highlightedKeys) { updateHighlightedKeysUI(it) }
+    }
+
+    private fun updateHighlightedKeysUI(set: Set<Int>) {
+        buttonsList!!.forEachIndexed { index, button ->
+            val color = when {
+                set.contains(index+1) -> ContextCompat.getColor(this, R.color.colorPrimary)
+                else -> Color.LTGRAY
+            }
+            button.setBackgroundColor(color)
+        }
+    }
+
+    private fun updateNoteTakingUI(isTakingNotes: Boolean) {
+        when {
+            isTakingNotes -> btn_notes.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
+            else -> btn_notes.setBackgroundColor(Color.LTGRAY)
+        }
     }
 
     private fun updateCells(cells: List<Cell>?) {
